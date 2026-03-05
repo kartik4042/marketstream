@@ -1,0 +1,28 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'order-api'
+    static_configs:
+      - targets: ['order-api:8081']
+    metrics_path: '/actuator/prometheus'
+
+  - job_name: 'payment-service'
+    static_configs:
+      - targets: ['payment-service:8083']
+    metrics_path: '/actuator/prometheus'
+
+  - job_name: 'inventory-service'
+    static_configs:
+      - targets: ['inventory-service:8000']
+    metrics_path: '/metrics'
+
+  - job_name: 'notification-worker'
+    static_configs:
+      - targets: ['notification-worker:8001']
+    metrics_path: '/metrics'
+
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka:9101']
